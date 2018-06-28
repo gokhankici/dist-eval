@@ -11,6 +11,7 @@ type Msg struct {
 	Src  string `json:"src"`
 	Dest string `json:"dest"`
 	Body struct {
+		// common fields
 		Type string `json:"type"`
 		MsgId int `json:"msg_id"`
 		InReplyTo int `json:"in_reply_to"`
@@ -23,7 +24,7 @@ type Msg struct {
 		ErrCode int `json:"code"`
 		ErrText int `json:"text"`
 
-		// Read / Write / CAS
+		// read / write / cas
 		Key   string `json:"key"`
 		Value string `json:"value"`
 		From  string `json:"from"`
@@ -58,12 +59,7 @@ func msg_printer(c chan Msg, d1 chan bool, d2 chan bool) {
 	for {
 		select {
 		case m := <-c:
-			fmt.Printf("got: %#v\n", m)
-			if m.Body.NodeIds != nil {
-				for _, node_id := range m.Body.NodeIds {
-					fmt.Printf("     %s\n", node_id)
-				}
-			}
+			fmt.Printf("%+v\n", m)
 		case <-d1:
 			d2 <- true
 			break
