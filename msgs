@@ -1,0 +1,1 @@
+{"src": "ali", "dest": "veli", "body": { "type": "raft_init", "msg_id" : 0, "node_id": "0", "node_ids": ["0", "1"] }}
