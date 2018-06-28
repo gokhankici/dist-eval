@@ -59,7 +59,7 @@ func msg_printer(c chan Msg, d1 chan bool, d2 chan bool) {
 	for {
 		select {
 		case m := <-c:
-			fmt.Printf("%+v\n", m)
+			fmt.Fprintf(os.Stderr, "%+v\n", m)
 		case <-d1:
 			d2 <- true
 			break
